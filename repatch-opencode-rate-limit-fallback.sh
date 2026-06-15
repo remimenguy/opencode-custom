@@ -287,6 +287,70 @@ function patchClaudeCodeIntegration(text) {
     'isClaudeCodeProviderID(model8.providerID)',
     "Claude Code Provider.getLanguage"
   );
+  if (!text.includes("var CLAUDE_CODE_EFFORTS")) {
+    text = replaceOnce(
+      text,
+      "CLAUDE_CODE_PACKAGE = \"@opencode/claude-code\";\nfunction isClaudeCodeProviderID(providerID2) {",
+      "CLAUDE_CODE_PACKAGE = \"@opencode/claude-code\";\nvar CLAUDE_CODE_EFFORTS = [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"];\nfunction claudeCodeNormalizeEffort(value4) {\n  if (typeof value4 !== \"string\")\n    return;\n  const normalized = value4.trim().toLowerCase();\n  return CLAUDE_CODE_EFFORTS.includes(normalized) ? normalized : void 0;\n}\nfunction claudeCodeEffortFromProviderOptions(providerOptions) {\n  return claudeCodeNormalizeEffort(providerOptions?.[CLAUDE_CODE_PROVIDER_ID]?.effort);\n}\nfunction claudeCodeRequestEffort(request32) {\n  return claudeCodeEffortFromProviderOptions(request32?.providerOptions) ?? claudeCodeEffortFromProviderOptions(request32?.model?.route?.defaults?.providerOptions);\n}\nfunction isClaudeCodeProviderID(providerID2) {",
+      "Claude Code effort helpers"
+    );
+  }
+  if (!text.includes("values: CLAUDE_CODE_EFFORTS")) {
+    text = replaceOnce(
+      text,
+      "temperature: false,\n    reasoning: false,\n    attachment: false,\n    tool_call: false\n  });",
+      "temperature: false,\n    reasoning: true,\n    reasoning_options: [{ type: \"effort\", values: CLAUDE_CODE_EFFORTS }],\n    attachment: false,\n    tool_call: false\n  });",
+      "Claude Code model reasoning"
+    );
+  }
+  if (!text.includes("args4.push(\"--effort\"")) {
+    text = replaceOnce(
+      text,
+      "\"--tools\",\n    \"\"\n  ];\n  const child = NodeChildProcess__default.spawn(command, args4, {",
+      "\"--tools\",\n    \"\"\n  ];\n  const claudeCodeEffort = claudeCodeNormalizeEffort(input.effort);\n  if (claudeCodeEffort)\n    args4.push(\"--effort\", claudeCodeEffort);\n  const child = NodeChildProcess__default.spawn(command, args4, {",
+      "Claude Code effort flag"
+    );
+  }
+  if (!text.includes("\n        effort: claudeCodeEffortFromProviderOptions(options11.providerOptions)")) {
+    text = replaceOnce(
+      text,
+      "prompt,\n        abortSignal: options11.abortSignal",
+      "prompt,\n        effort: claudeCodeEffortFromProviderOptions(options11.providerOptions),\n        abortSignal: options11.abortSignal",
+      "Claude Code doGenerate effort"
+    );
+  }
+  if (!text.includes("\n              effort: claudeCodeEffortFromProviderOptions(options11.providerOptions)")) {
+    text = replaceOnce(
+      text,
+      "prompt,\n              abortSignal: options11.abortSignal",
+      "prompt,\n              effort: claudeCodeEffortFromProviderOptions(options11.providerOptions),\n              abortSignal: options11.abortSignal",
+      "Claude Code doStream effort"
+    );
+  }
+  if (!text.includes("effort: claudeCodeRequestEffort(request32),")) {
+    text = replaceOnce(
+      text,
+      "prompt,\n        abortSignal: request32.abort",
+      "prompt,\n        effort: claudeCodeRequestEffort(request32),\n        abortSignal: request32.abort",
+      "Claude Code llmclient effort"
+    );
+  }
+  if (!text.includes("case CLAUDE_CODE_PACKAGE:")) {
+    text = replaceOnce(
+      text,
+      "switch (model8.api.npm) {\n",
+      "switch (model8.api.npm) {\n    case CLAUDE_CODE_PACKAGE:\n      return Object.fromEntries(CLAUDE_CODE_EFFORTS.map((effort) => [effort, { effort }]));\n",
+      "Claude Code reasoning effort variants"
+    );
+  }
+  if (!text.includes("claudeCodeRouteEffort")) {
+    text = replaceOnce(
+      text,
+      "    return exports_Effect.succeed(route2.with({\n      provider: CLAUDE_CODE_PROVIDER_ID,\n      endpoint: { baseURL: \"http://localhost\" },\n      limits: { context: resolved.limit.context, output: resolved.limit.output }\n    }).model({ id: resolved.api.id }));",
+      "    const claudeCodeRouteEffort = claudeCodeNormalizeEffort(resolved.request.body?.effort);\n    return exports_Effect.succeed(route2.with({\n      provider: CLAUDE_CODE_PROVIDER_ID,\n      endpoint: { baseURL: \"http://localhost\" },\n      providerOptions: claudeCodeRouteEffort ? { [CLAUDE_CODE_PROVIDER_ID]: { effort: claudeCodeRouteEffort } } : void 0,\n      limits: { context: resolved.limit.context, output: resolved.limit.output }\n    }).model({ id: resolved.api.id }));",
+      "Claude Code route effort"
+    );
+  }
   return text;
 }
 

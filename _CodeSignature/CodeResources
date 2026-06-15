@@ -10,7 +10,7 @@
 		</data>
 		<key>Resources/app.asar</key>
 		<data>
-		Hj6dwAxi/TKLb7AYRHBSynRlspw=
+		N7C72aXM2eHVu1P5lvSi5PZBGDo=
 		</data>
 		<key>Resources/app.asar.bak-power-fallback-20260615191515</key>
 		<data>
@@ -19,6 +19,10 @@
 		<key>Resources/app.asar.bak-rate-limit-fallback-20260615190531</key>
 		<data>
 		MGmTDFln2NOR7M/FWhfxTYxSOYg=
+		</data>
+		<key>Resources/app.asar.bak-repatch-20260615225720</key>
+		<data>
+		Hj6dwAxi/TKLb7AYRHBSynRlspw=
 		</data>
 		<key>Resources/app.asar.bak-toggle-fallback-20260615201408</key>
 		<data>
@@ -209,7 +213,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ISvqFMCHJunnx30PM3SJnO0VP0WsHy5E84o9oaX6oeQ=
+			M8fU9w1Z46BJzXNn8VEwPDk/FpFRe8t2sZrIYgPACS0=
 			</data>
 		</dict>
 		<key>Resources/app.asar.bak-power-fallback-20260615191515</key>
@@ -224,6 +228,13 @@
 			<key>hash2</key>
 			<data>
 			XBnCilo1aesIqMUW+BRf6Yuqbj5AP73+ZjuYQ5iss0o=
+			</data>
+		</dict>
+		<key>Resources/app.asar.bak-repatch-20260615225720</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ISvqFMCHJunnx30PM3SJnO0VP0WsHy5E84o9oaX6oeQ=
 			</data>
 		</dict>
 		<key>Resources/app.asar.bak-toggle-fallback-20260615201408</key>
@@ -358,15 +369,6 @@
 			<data>
 			DGx/lIHsSh4/jfk0ukG6pSXIb9UEbWmj3I3oyqxh2VU=
 			</data>
-		</dict>
-		<key>repatch-opencode-rate-limit-fallback.sh</key>
-		<dict>
-			<key>cdhash</key>
-			<data>
-			wCEes/PF8MzHQ8ZxxSA4LwvoT0s=
-			</data>
-			<key>requirement</key>
-			<string>cdhash H"c0211eb3f3c5f0ccc743c671c520382f0be84f4b"</string>
 		</dict>
 	</dict>
 	<key>rules</key>
