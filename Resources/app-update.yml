@@ -1,0 +1,5 @@
+owner: anomalyco
+repo: opencode
+provider: github
+channel: latest
+updaterCacheDirName: '@opencode-aidesktop-updater'

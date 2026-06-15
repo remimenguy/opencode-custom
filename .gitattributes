@@ -1,0 +1,2 @@
+Resources/app.asar* filter=lfs diff=lfs merge=lfs -text
+Frameworks/Electron[[:space:]]Framework.framework/Versions/A/Electron[[:space:]]Framework filter=lfs diff=lfs merge=lfs -text
