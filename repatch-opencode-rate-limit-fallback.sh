@@ -303,6 +303,14 @@ function patchClaudeCodeIntegration(text) {
       "Claude Code model reasoning"
     );
   }
+  if (!text.includes("\"Claude Code Opus\", \"claude-opus\"")) {
+    text = replaceOnce(
+      text,
+      "      opus: model(\"opus\", \"Claude Code Opus\", \"claude\", 15, 75),\n      sonnet: model(\"sonnet\", \"Claude Code Sonnet\", \"claude\", 3, 15),\n      haiku: model(\"haiku\", \"Claude Code Haiku\", \"claude\", 1, 5)",
+      "      opus: model(\"opus\", \"Claude Code Opus\", \"claude-opus\", 15, 75),\n      sonnet: model(\"sonnet\", \"Claude Code Sonnet\", \"claude-sonnet\", 3, 15),\n      haiku: model(\"haiku\", \"Claude Code Haiku\", \"claude-haiku\", 1, 5)",
+      "Claude Code distinct model families"
+    );
+  }
   if (!text.includes("args4.push(\"--effort\"")) {
     text = replaceOnce(
       text,

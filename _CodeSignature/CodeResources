@@ -10,7 +10,7 @@
 		</data>
 		<key>Resources/app.asar</key>
 		<data>
-		N7C72aXM2eHVu1P5lvSi5PZBGDo=
+		6em6p4/VIEHkhlGrHxNv1zxnDfo=
 		</data>
 		<key>Resources/app.asar.bak-power-fallback-20260615191515</key>
 		<data>
@@ -20,9 +20,9 @@
 		<data>
 		MGmTDFln2NOR7M/FWhfxTYxSOYg=
 		</data>
-		<key>Resources/app.asar.bak-repatch-20260615225720</key>
+		<key>Resources/app.asar.bak-repatch-20260615235742</key>
 		<data>
-		Hj6dwAxi/TKLb7AYRHBSynRlspw=
+		N7C72aXM2eHVu1P5lvSi5PZBGDo=
 		</data>
 		<key>Resources/app.asar.bak-toggle-fallback-20260615201408</key>
 		<data>
@@ -213,7 +213,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			M8fU9w1Z46BJzXNn8VEwPDk/FpFRe8t2sZrIYgPACS0=
+			MNvmkOWiLqSJUaYtlhEjNIo7duqQRtfszebTJSnFVuU=
 			</data>
 		</dict>
 		<key>Resources/app.asar.bak-power-fallback-20260615191515</key>
@@ -230,11 +230,11 @@
 			XBnCilo1aesIqMUW+BRf6Yuqbj5AP73+ZjuYQ5iss0o=
 			</data>
 		</dict>
-		<key>Resources/app.asar.bak-repatch-20260615225720</key>
+		<key>Resources/app.asar.bak-repatch-20260615235742</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ISvqFMCHJunnx30PM3SJnO0VP0WsHy5E84o9oaX6oeQ=
+			M8fU9w1Z46BJzXNn8VEwPDk/FpFRe8t2sZrIYgPACS0=
 			</data>
 		</dict>
 		<key>Resources/app.asar.bak-toggle-fallback-20260615201408</key>
