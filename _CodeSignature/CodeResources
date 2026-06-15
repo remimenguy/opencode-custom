@@ -10,19 +10,19 @@
 		</data>
 		<key>Resources/app.asar</key>
 		<data>
-		wJ+O1Ytt4Uhh66GscjxKWSaWPgA=
+		Hj6dwAxi/TKLb7AYRHBSynRlspw=
 		</data>
 		<key>Resources/app.asar.bak-power-fallback-20260615191515</key>
 		<data>
-		Wymw3NFdY0sJdh7CWsFgQW3Hbx0=
+		yFjK2BSMNHTEM4o1k6KhZDCUTeg=
 		</data>
 		<key>Resources/app.asar.bak-rate-limit-fallback-20260615190531</key>
 		<data>
-		pnDTTul4M9/y/ewqYADv3Fi4BRE=
+		MGmTDFln2NOR7M/FWhfxTYxSOYg=
 		</data>
 		<key>Resources/app.asar.bak-toggle-fallback-20260615201408</key>
 		<data>
-		5cc2R/6GcAMdGF977cymYxWehE0=
+		IVdeBi66BKzz2nrNXe/UsUFOg1Q=
 		</data>
 		<key>Resources/app.asar.unpacked/node_modules/@lydell/node-pty-darwin-arm64/LICENSE</key>
 		<data>
@@ -99,6 +99,15 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>.gitattributes</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			XQGw/SmvRlbg2uIjXyG9Xqy/hdg=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"5d01b0fd29af4656e0dae2235f21bd5eacbf85d8"</string>
+		</dict>
 		<key>Frameworks/Electron Framework.framework</key>
 		<dict>
 			<key>cdhash</key>
@@ -171,6 +180,24 @@
 			<key>requirement</key>
 			<string>cdhash H"e74cab343eaaac5650b0ea5d4964e3d92b038d15"</string>
 		</dict>
+		<key>LICENSE</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			49/OthieE23VtVQV27JNASoQdJc=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"e3dfceb6189e136dd5b55415dbb24d012a107497"</string>
+		</dict>
+		<key>README.md</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			RNqok+rm0S/0OifTOiT7ySksut4=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"44daa893eae6d12ff43a27d33a24fbc9292cbade"</string>
+		</dict>
 		<key>Resources/app-update.yml</key>
 		<dict>
 			<key>hash2</key>
@@ -182,28 +209,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Aw5BOc3n5PMKQnTIf5Et1SWnUcGMAFarAj9aQfabWxk=
+			ISvqFMCHJunnx30PM3SJnO0VP0WsHy5E84o9oaX6oeQ=
 			</data>
 		</dict>
 		<key>Resources/app.asar.bak-power-fallback-20260615191515</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ltCKyy2lbFXVK4kuq1kPcs7HQ0TRKv4WrWOkQdPMfa0=
+			xFf4K8k6bFSVT5q3p96Z1X4HGCU64o00QmBNlL45gmY=
 			</data>
 		</dict>
 		<key>Resources/app.asar.bak-rate-limit-fallback-20260615190531</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			REHPQQDIBWwydi0gs37BgMy3KOKPnngFHOPK3Hp7lZs=
+			XBnCilo1aesIqMUW+BRf6Yuqbj5AP73+ZjuYQ5iss0o=
 			</data>
 		</dict>
 		<key>Resources/app.asar.bak-toggle-fallback-20260615201408</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lkg+Pinjfm1tR6Oi5qfBCUd8dXWO+xupNVmpL5mn8xw=
+			2l8cmwrpQr1ADTa8X8+B74A2/v0akRAw9HjUE0w/lCY=
 			</data>
 		</dict>
 		<key>Resources/app.asar.unpacked/node_modules/@lydell/node-pty-darwin-arm64/LICENSE</key>
@@ -331,6 +358,15 @@
 			<data>
 			DGx/lIHsSh4/jfk0ukG6pSXIb9UEbWmj3I3oyqxh2VU=
 			</data>
+		</dict>
+		<key>repatch-opencode-rate-limit-fallback.sh</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			wCEes/PF8MzHQ8ZxxSA4LwvoT0s=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"c0211eb3f3c5f0ccc743c671c520382f0be84f4b"</string>
 		</dict>
 	</dict>
 	<key>rules</key>
