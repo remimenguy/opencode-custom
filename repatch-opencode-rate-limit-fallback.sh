@@ -359,6 +359,94 @@ function patchClaudeCodeIntegration(text) {
       "Claude Code route effort"
     );
   }
+  if (!text.includes("type === \"thinking\" || type === \"redacted_thinking\"")) {
+    text = replaceOnce(
+      text,
+      "  const type = part2.type;\n  if (type === \"text\")\n    return claudeCodeStringify(part2.text);\n",
+      "  const type = part2.type;\n  if (type === \"thinking\" || type === \"redacted_thinking\")\n    return \"\";\n  if (type === \"text\")\n    return claudeCodeStringify(part2.text);\n",
+      "Claude Code hide thinking text"
+    );
+  }
+  if (!text.includes("function claudeCodeExtractReasoning(")) {
+    text = replaceOnce(
+      text,
+      "async function* claudeCodeTextStream(input) {",
+      "function claudeCodeReasoningText(content2) {\n  if (!Array.isArray(content2))\n    return \"\";\n  return content2.filter((part2) => part2 && (part2.type === \"thinking\" || part2.type === \"redacted_thinking\")).map((part2) => claudeCodeStringify(part2.thinking ?? part2.text)).filter((item2) => item2.trim() !== \"\").join(\"\\n\\n\");\n}\nfunction claudeCodeExtractReasoning(event2, state22) {\n  if (!event2 || typeof event2 !== \"object\" || event2.type !== \"assistant\" || !event2.message || !event2.message.content)\n    return \"\";\n  const full = claudeCodeReasoningText(event2.message.content);\n  if (!full)\n    return \"\";\n  let delta = full;\n  if (state22.reasoningText && full.startsWith(state22.reasoningText))\n    delta = full.slice(state22.reasoningText.length);\n  else if (full === state22.reasoningText)\n    delta = \"\";\n  state22.reasoningText = full;\n  return delta;\n}\nasync function* claudeCodeTextStream(input) {",
+      "Claude Code reasoning helpers"
+    );
+  }
+  if (!text.includes("reasoningText: \"\" };")) {
+    text = replaceOnce(
+      text,
+      "const state22 = { assistantText: \"\", assistantEmitted: false };",
+      "const state22 = { assistantText: \"\", assistantEmitted: false, reasoningText: \"\" };",
+      "Claude Code reasoning state"
+    );
+  }
+  if (!text.includes("push({ type: \"reasoning\", text: reasoning2 })")) {
+    text = replaceOnce(
+      text,
+      "const text82 = claudeCodeExtractText(event2, state22);\n      if (text82)\n        push({ type: \"text\", text: text82 });\n",
+      "const reasoning2 = claudeCodeExtractReasoning(event2, state22);\n      if (reasoning2)\n        push({ type: \"reasoning\", text: reasoning2 });\n      const text82 = claudeCodeExtractText(event2, state22);\n      if (text82)\n        push({ type: \"text\", text: text82 });\n",
+      "Claude Code emit reasoning items"
+    );
+  }
+  if (!text.includes("let reasoningStarted = false;\n          let usage3;")) {
+    text = replaceOnce(
+      text,
+      "let textStarted = false;\n          let usage3;\n          controller.enqueue({ type: \"stream-start\", warnings: [] });",
+      "let textStarted = false;\n          let reasoningStarted = false;\n          let usage3;\n          controller.enqueue({ type: \"stream-start\", warnings: [] });",
+      "Claude Code doStream reasoning flag"
+    );
+  }
+  if (!text.includes("controller.enqueue({ type: \"reasoning-delta\", id: \"reasoning-0\", text: item2.text })")) {
+    text = replaceOnce(
+      text,
+      "if (!textStarted) {\n                controller.enqueue({ type: \"text-start\", id: \"text-0\" });\n                textStarted = true;\n              }\n              controller.enqueue({ type: \"text-delta\", id: \"text-0\", delta: item2.text });",
+      "if (item2.type === \"reasoning\") {\n                if (!reasoningStarted) {\n                  controller.enqueue({ type: \"reasoning-start\", id: \"reasoning-0\" });\n                  reasoningStarted = true;\n                }\n                controller.enqueue({ type: \"reasoning-delta\", id: \"reasoning-0\", text: item2.text });\n                continue;\n              }\n              if (!textStarted) {\n                controller.enqueue({ type: \"text-start\", id: \"text-0\" });\n                textStarted = true;\n              }\n              controller.enqueue({ type: \"text-delta\", id: \"text-0\", delta: item2.text });",
+      "Claude Code doStream reasoning branch"
+    );
+  }
+  if (!text.includes("controller.enqueue({ type: \"reasoning-end\", id: \"reasoning-0\" })")) {
+    text = replaceOnce(
+      text,
+      "if (textStarted)\n              controller.enqueue({ type: \"text-end\", id: \"text-0\" });\n",
+      "if (reasoningStarted)\n              controller.enqueue({ type: \"reasoning-end\", id: \"reasoning-0\" });\n            if (textStarted)\n              controller.enqueue({ type: \"text-end\", id: \"text-0\" });\n",
+      "Claude Code doStream reasoning end"
+    );
+  }
+  if (!text.includes("let reasoningStarted = false;\n    let usage3;")) {
+    text = replaceOnce(
+      text,
+      "let textStarted = false;\n    let usage3;\n    yield LLMEvent.stepStart(",
+      "let textStarted = false;\n    let reasoningStarted = false;\n    let usage3;\n    yield LLMEvent.stepStart(",
+      "Claude Code llm reasoning flag"
+    );
+  }
+  if (!text.includes("yield LLMEvent.reasoningDelta({ id: \"reasoning-0\", text: item2.text })")) {
+    text = replaceOnce(
+      text,
+      "if (!textStarted) {\n          yield LLMEvent.textStart({ id: \"text-0\" });\n          textStarted = true;\n        }\n        yield LLMEvent.textDelta({ id: \"text-0\", text: item2.text });",
+      "if (item2.type === \"reasoning\") {\n          if (!reasoningStarted) {\n            yield LLMEvent.reasoningStart({ id: \"reasoning-0\" });\n            reasoningStarted = true;\n          }\n          yield LLMEvent.reasoningDelta({ id: \"reasoning-0\", text: item2.text });\n          continue;\n        }\n        if (!textStarted) {\n          yield LLMEvent.textStart({ id: \"text-0\" });\n          textStarted = true;\n        }\n        yield LLMEvent.textDelta({ id: \"text-0\", text: item2.text });",
+      "Claude Code llm reasoning branch"
+    );
+  }
+  if (!text.includes("reasoningEnd({ id: \"reasoning-0\" });\n      if (textStarted)\n        yield LLMEvent.textEnd({ id: \"text-0\" });\n      yield LLMEvent.stepFinish({ index: 0, reason: \"stop\"")) {
+    text = replaceOnce(
+      text,
+      "if (textStarted)\n        yield LLMEvent.textEnd({ id: \"text-0\" });\n      yield LLMEvent.stepFinish({ index: 0, reason: \"stop\", usage: usage3 });",
+      "if (reasoningStarted)\n        yield LLMEvent.reasoningEnd({ id: \"reasoning-0\" });\n      if (textStarted)\n        yield LLMEvent.textEnd({ id: \"text-0\" });\n      yield LLMEvent.stepFinish({ index: 0, reason: \"stop\", usage: usage3 });",
+      "Claude Code llm reasoning end success"
+    );
+  }
+  if (!text.includes("catch (e3) {\n      if (reasoningStarted)")) {
+    text = replaceOnce(
+      text,
+      "} catch (e3) {\n      if (textStarted)\n        yield LLMEvent.textEnd({ id: \"text-0\" });\n      yield LLMEvent.providerError(",
+      "} catch (e3) {\n      if (reasoningStarted)\n        yield LLMEvent.reasoningEnd({ id: \"reasoning-0\" });\n      if (textStarted)\n        yield LLMEvent.textEnd({ id: \"text-0\" });\n      yield LLMEvent.providerError(",
+      "Claude Code llm reasoning end error"
+    );
+  }
   return text;
 }
 
